@@ -19,3 +19,7 @@ modify column rating int;
 alter table flipkart_orders_for_sql
 modify column price bigint;
 
+select `returns`,rating , sum(price) 
+from flipkart_orders_for_sql
+where rating = 5 and `returns` = 'Yes'
+group by `returns`,rating;
