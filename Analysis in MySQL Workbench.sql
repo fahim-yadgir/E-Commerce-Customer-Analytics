@@ -33,3 +33,15 @@ limit 1;
 select customer_name , sum(price)as total_price,count(customer_name)as total_count
 from flipkart_orders_for_sql
 group by customer_name;
+
+select product_name , sum(price)as total_revenue
+from flipkart_orders_for_sql
+group by product_name;
+
+select customer_name ,product_name, sum(price)as max_price
+from flipkart_orders_for_sql
+group by customer_name,product_name
+limit 1;
+
+select product_name , sum(price) over(partition by product_name order by review_date asc)as runnig_salary
+from flipkart_orders_for_sql;
