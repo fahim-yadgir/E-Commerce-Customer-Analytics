@@ -23,3 +23,13 @@ select `returns`,rating , sum(price)
 from flipkart_orders_for_sql
 where rating = 5 and `returns` = 'Yes'
 group by `returns`,rating;
+
+select rating , max(price)as total_price
+from flipkart_orders_for_sql
+group by rating 
+order by total_price desc
+limit 1;
+
+select customer_name , sum(price)as total_price,count(customer_name)as total_count
+from flipkart_orders_for_sql
+group by customer_name;
