@@ -60,3 +60,16 @@ select * from flipkart_orders_for_sql;
 end $$
 
 call Update_rating('ORD000005',3);
+
+delimiter $$
+create procedure Update_customer_name(
+in o_id text,
+in c_name text
+)
+begin
+update flipkart_orders_for_sql
+set customer_name = c_name
+where order_id = o_id;
+select * from flipkart_orders_for_sql;
+end $$
+call Update_customer_name('ORD000001','Fahim Yadgir');
