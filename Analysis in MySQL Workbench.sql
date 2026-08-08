@@ -45,3 +45,18 @@ limit 1;
 
 select product_name , sum(price) over(partition by product_name order by review_date asc)as runnig_salary
 from flipkart_orders_for_sql;
+
+delimiter $$
+create procedure Update_rating
+(
+in o_id text,
+in rate int
+)
+begin 
+update flipkart_orders_for_sql
+set rating = rate
+where order_id = o_id;
+select * from flipkart_orders_for_sql;
+end $$
+
+call Update_rating('ORD000005',3);
