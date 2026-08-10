@@ -96,3 +96,10 @@ where product_name = 'Kitchenware')
 select * from 
 Kitchenware_product;
 
+create view `2024_January_data` as
+(
+select * from flipkart_orders_for_sql
+where review_date between '2024-01-1' and '2024-01-31'
+)
+
+select * from `2024_January_data`;
