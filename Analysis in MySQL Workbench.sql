@@ -43,7 +43,7 @@ from flipkart_orders_for_sql
 group by customer_name,product_name
 limit 1;
 
-select product_name , sum(price) over(partition by product_name order by review_date asc)as runnig_salary
+select product_name , sum(price) over(partition by product_name order by review_date asc)as runnig_price
 from flipkart_orders_for_sql;
 
 delimiter $$
@@ -88,3 +88,11 @@ select month(review_date)as Month_review , sum(price)as total_price
 from flipkart_orders_for_sql
 group by Month_review
 order by Month_review asc;
+
+create view Kitchenware_product as(
+select * from flipkart_orders_for_sql
+where product_name = 'Kitchenware')
+
+select * from 
+Kitchenware_product;
+
