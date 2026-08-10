@@ -73,3 +73,18 @@ where order_id = o_id;
 select * from flipkart_orders_for_sql;
 end $$
 call Update_customer_name('ORD000001','Fahim Yadgir');
+
+select customer_name , count(*)as customer_count
+from flipkart_orders_for_sql
+group by customer_name;
+
+select count(distinct(customer_name))
+from flipkart_orders_for_sql;
+
+select count(customer_name)
+from flipkart_orders_for_sql;
+
+select month(review_date)as Month_review , sum(price)as total_price
+from flipkart_orders_for_sql
+group by Month_review
+order by Month_review asc;
