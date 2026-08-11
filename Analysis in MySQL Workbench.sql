@@ -96,13 +96,16 @@ where product_name = 'Kitchenware')
 select * from 
 Kitchenware_product;
 
-create view `2024_January_data` as
+drop view `2024_January_data`;
+
+create view `2024_data` as 
 (
-select * from flipkart_orders_for_sql
-where review_date between '2024-01-1' and '2024-01-31'
+select year(review_date)as years ,order_id , customer_name, product_name, review_date , rating , price , sum(price) over(order by order_id)
+from flipkart_orders_for_sql
+where year(review_date) = '2024'
 )
 
-select * from `2024_January_data`;
+select * from `2024_data`;
 
 
 create view `2025_years_data` as
@@ -113,3 +116,34 @@ where year(review_date) = '2025'
 )
 
 select * from `2025_years_data`;
+
+create view `2026_years_data` as
+(
+select year(review_date)as years , customer_name,product_name,review_date,rating,price,sum(price) over(order by order_id)as runnig_price
+from flipkart_orders_for_sql
+where year(review_date) = '2026'
+)
+
+select * from `2026_years_data`;
+
+create view `2024_years_data` as
+(
+select year(review_date)as years , customer_name,product_name,review_date,rating,price,sum(price) over(order by order_id)as runnig_price
+from flipkart_orders_for_sql
+where year(review_date) = '2026'
+)
+
+select * from `2026_years_data`;
+
+select year(review_date) as years,sum(price)as total_price
+from flipkart_orders_for_sql
+group by years;
+
+create view `2023_years_data` as
+(
+select year(review_date)as years , customer_name,product_name,review_date,rating,price,sum(price) over(order by order_id)as runnig_price
+from flipkart_orders_for_sql
+where year(review_date) = '2023'
+)
+
+select * from `2023_years_data`;
