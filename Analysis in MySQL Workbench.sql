@@ -103,3 +103,13 @@ where review_date between '2024-01-1' and '2024-01-31'
 )
 
 select * from `2024_January_data`;
+
+
+create view `2025_years_data` as
+(
+select year(review_date)as years , customer_name,product_name,review_date,rating,price,sum(price) over(order by order_id)as runnig_price
+from flipkart_orders_for_sql
+where year(review_date) = '2025'
+)
+
+select * from `2025_years_data`;
