@@ -147,3 +147,18 @@ where year(review_date) = '2023'
 )
 
 select * from `2023_years_data`;
+
+select product_name , sum(price)as total_revenue
+from flipkart_orders_for_sql
+group by product_name
+order by total_revenue desc;
+
+create view Electronics_products as
+(
+select product_name , customer_name , review_date , rating , price,sum(price) over(order by review_date)as runnig_price
+from flipkart_orders_for_sql
+where product_name = 'Electronics'
+order by review_date asc
+)
+
+select * from Electronics_products;
