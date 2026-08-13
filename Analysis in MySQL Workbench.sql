@@ -162,3 +162,16 @@ order by review_date asc
 )
 
 select * from Electronics_products;
+
+create view Groceries_Data as
+(
+select * from flipkart_orders_for_sql
+where product_name = "Groceries"
+)
+
+select * from Groceries_Data;
+
+select product_name , count(*)as total_count
+from flipkart_orders_for_sql
+group by product_name
+order by total_count desc;
