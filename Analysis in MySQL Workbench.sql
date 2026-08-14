@@ -175,3 +175,12 @@ select product_name , count(*)as total_count
 from flipkart_orders_for_sql
 group by product_name
 order by total_count desc;
+
+select rating , sum(price)as total_sell
+from flipkart_orders_for_sql
+group by rating
+order by total_sell desc;
+
+select product_name,price,sum(price)over(order by review_date)as dates
+from flipkart_orders_for_sql
+where price > 7000 and product_name = "Electronics"
