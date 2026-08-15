@@ -184,3 +184,19 @@ order by total_sell desc;
 select product_name,price,sum(price)over(order by review_date)as dates
 from flipkart_orders_for_sql
 where price > 7000 and product_name = "Electronics"
+
+delimiter $$
+
+create procedure Update_product_name
+(
+in o_id text,
+in p_name text
+)
+begin 
+update flipkart_orders_for_sql
+set product_name = p_name
+where order_id = o_id;
+select * from flipkart_orders_for_sql;
+end $$
+
+call Update_product_name("ORD000001","Groceries");
