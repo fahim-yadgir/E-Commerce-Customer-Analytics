@@ -204,3 +204,18 @@ select * from flipkart_orders_for_sql;
 end $$
 
 call Update_product_name("ORD000001","Groceries",200);
+
+select customer_name , product_name , `returns` , review_date , rating , price
+from flipkart_orders_for_sql
+where review_date between '2026-01-01' and '2026-12-31' and rating = 5 and price > 4000 and `returns` = 'Yes';
+
+select customer_name , product_name,sum(price)as total_purchasing ,count(*)as total_count
+from flipkart_orders_for_sql
+group by customer_name , product_name
+having sum(price) > 50000
+order by product_name;
+
+select customer_name , product_name 
+from flipkart_orders_for_sql
+where customer_name = 'Inaya Taneja'
+
