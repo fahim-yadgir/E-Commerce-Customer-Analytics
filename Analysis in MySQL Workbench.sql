@@ -185,18 +185,22 @@ select product_name,price,sum(price)over(order by review_date)as dates
 from flipkart_orders_for_sql
 where price > 7000 and product_name = "Electronics"
 
+
+drop procedure Update_product_name;
+
 delimiter $$
 
 create procedure Update_product_name
 (
 in o_id text,
-in p_name text
+in p_name text,
+in price bigint
 )
 begin 
 update flipkart_orders_for_sql
-set product_name = p_name
+set product_name = p_name , price = price
 where order_id = o_id;
 select * from flipkart_orders_for_sql;
 end $$
 
-call Update_product_name("ORD000001","Groceries");
+call Update_product_name("ORD000001","Groceries",200);
