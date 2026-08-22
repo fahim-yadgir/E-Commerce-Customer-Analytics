@@ -225,3 +225,10 @@ select *,sum(price) over(order by review_date)
 from flipkart_orders_for_sql
 where `returns` = 'Yes' and price > 5000;
 
+create view Sports_Equipment as
+(
+select * ,sum(price) over(order by review_date) from flipkart_orders_for_sql
+where product_name = 'Sports Equipment'
+)
+
+select * from Sports_Equipment;
