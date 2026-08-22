@@ -221,5 +221,6 @@ where customer_name = 'Inaya Taneja'
 
 select * from flipkart_orders_for_sql;
 
-select * from flipkart_orders_for_sql
+select *,sum(price) over(order by review_date)
+from flipkart_orders_for_sql
 where `returns` = 'Yes' and price > 5000;
