@@ -219,3 +219,7 @@ select customer_name , product_name
 from flipkart_orders_for_sql
 where customer_name = 'Inaya Taneja'
 
+select * from flipkart_orders_for_sql;
+
+select * from flipkart_orders_for_sql
+where `returns` = 'Yes' and price > 5000;
