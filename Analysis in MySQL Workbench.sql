@@ -232,3 +232,11 @@ where product_name = 'Sports Equipment'
 )
 
 select * from Sports_Equipment;
+
+select customer_name , product_name , `returns` , price
+from flipkart_orders_for_sql
+where customer_name = 'Tara Varughese';
+
+select customer_name , product_name , `returns` , price
+from flipkart_orders_for_sql
+where rating >= 4 and price > 4500 ;
