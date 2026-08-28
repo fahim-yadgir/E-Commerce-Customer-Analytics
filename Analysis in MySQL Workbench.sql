@@ -240,3 +240,22 @@ where customer_name = 'Tara Varughese';
 select customer_name , product_name , `returns` , price
 from flipkart_orders_for_sql
 where rating >= 4 and price > 4500 ;
+
+delimiter $$
+create procedure Update_returns
+(
+in order_id text,
+in `returns`text
+)
+begin 
+update flipkart_orders_for_sql
+set `returns` = `returns`
+where order_id = order_id;
+select * from flipkart_orders_for_sql;
+end $$
+delimiter $$
+
+start transaction;
+call Update_returns("ORD000001","No");
+
+rollback;
