@@ -259,3 +259,7 @@ start transaction;
 call Update_returns("ORD000001","No");
 
 rollback;
+
+select order_id , customer_name , product_name , `returns` , price
+from flipkart_orders_for_sql
+where `returns` = 'Yes' and price < 100;
