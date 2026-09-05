@@ -263,3 +263,17 @@ rollback;
 select order_id , customer_name , product_name , `returns` , price
 from flipkart_orders_for_sql
 where `returns` = 'Yes' and price < 100;
+
+create view return_yes as
+(
+select * from flipkart_orders_for_sql
+where `returns` = 'Yes'
+)
+select * from return_yes;
+
+create view return_No as
+(
+select * from flipkart_orders_for_sql
+where `returns` = 'No'
+)
+select * from return_No;
