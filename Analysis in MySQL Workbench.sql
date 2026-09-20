@@ -281,4 +281,9 @@ select * from return_No;
 select customer_name , product_name , `returns` ,rating ,review_date ,price
 from flipkart_orders_for_sql
 where `returns` = "No" and review_date between "2023-01-06" and "2025-12-19"  and rating >=5
-order by review_date
+order by review_date;
+
+select customer_name , product_name , review_date,price,sum(price) over(order by product_name)as total_price
+from flipkart_orders_for_sql
+where price > 5000
+order by product_name;
