@@ -302,3 +302,6 @@ select * from flipkart_orders_for_sql;
 end $$
 delimiter ;
 
+start transaction;
+call update_price("ORD000001",100);
+commit;
