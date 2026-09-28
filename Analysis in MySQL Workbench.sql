@@ -287,3 +287,18 @@ select customer_name , product_name , review_date,price,sum(price) over(order by
 from flipkart_orders_for_sql
 where price > 5000
 order by product_name;
+
+delimiter $$
+create procedure update_price
+(
+in o_id text,
+in o_price bigint
+)
+begin 
+update flipkart_orders_for_sql
+set price = price + o_price
+where order_id = o_id;
+select * from flipkart_orders_for_sql;
+end $$
+delimiter ;
+
