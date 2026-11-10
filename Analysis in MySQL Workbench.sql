@@ -303,5 +303,22 @@ end $$
 delimiter ;
 
 start transaction;
-call update_price("ORD000001",100);
+call update_price("ORD000003",100);
 commit;
+
+select avg(price)
+from flipkart_orders_for_sql;
+
+select customer_name  , product_name , price , count(*)as total_count
+from flipkart_orders_for_sql
+where price > (select avg(price)
+				from flipkart_orders_for_sql)
+group by customer_name  , product_name , price ;
+
+select customer_name , product_name , rating , price
+from (
+		select customer_name , product_name , rating , price , dense_rank() over(partition by product_name order by price desc)as top_3
+        from flipkart_orders_for_sql
+    )as sub
+where top_3 = 3
+order by product_name asc;
