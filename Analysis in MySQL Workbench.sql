@@ -322,3 +322,18 @@ from (
     )as sub
 where top_3 = 3
 order by product_name asc;
+
+select count(*)as total_count
+from flipkart_orders_for_sql
+where rating = 5;
+
+
+select customer_name ,count(*)as total_count , sum(price)as total_price
+from flipkart_orders_for_sql
+where rating = 5
+group by customer_name
+order by total_count desc;
+
+select customer_name , product_name , rating ,price
+from flipkart_orders_for_sql
+where customer_name = "Yashoda Mammen";
