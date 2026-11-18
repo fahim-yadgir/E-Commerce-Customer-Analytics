@@ -337,3 +337,21 @@ order by total_count desc;
 select customer_name , product_name , rating ,price
 from flipkart_orders_for_sql
 where customer_name = "Yashoda Mammen";
+
+select customer_name , count(*)as customer_count
+from flipkart_orders_for_sql
+group by customer_name
+order by customer_count desc;
+
+select sub.customer_name , sub.product_name , sub.price , sub.rating 
+from (
+		select customer_name , product_name , price , rating  , count(*)as total_count
+        from flipkart_orders_for_sql
+        group by customer_name , product_name , price , rating  
+)as sub
+where total_count > 19;
+
+select customer_name , product_name, count(*) as total_count
+from flipkart_orders_for_sql
+group by customer_name , product_name
+having count(*) > 19;
