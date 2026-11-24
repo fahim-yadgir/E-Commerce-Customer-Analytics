@@ -355,3 +355,9 @@ select customer_name , product_name, count(*) as total_count
 from flipkart_orders_for_sql
 group by customer_name , product_name
 having count(*) > 19;
+
+select customer_name , product_name , `returns` , review_date , sum(price)As total_price , count(*) as total_count
+from flipkart_orders_for_sql
+where review_date between '2023-01-01' and '2024-01-31'
+group by customer_name , product_name , `returns` , review_date 
+order by  total_count desc;
